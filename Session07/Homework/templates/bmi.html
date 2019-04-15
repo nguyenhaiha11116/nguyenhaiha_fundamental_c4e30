@@ -1,0 +1,11 @@
+{% if data.bmi < 16: %}
+BMI < 16 : Severely underweight
+{% elif data.bmi < 18.5: %}
+16 <= BMI < 18.5 : Underweight
+{% elif data.bmi < 25: %}
+18.5 <= BMI < 25 : Normal
+{% elif data.bmi < 30: %}
+25 <= BMI < 30 : Overweight
+{% else: %}
+BMI >= 30 : Obese
+{%endif%}
