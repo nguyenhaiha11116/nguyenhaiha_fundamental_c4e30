@@ -5,7 +5,7 @@ db = client.users
 
 def add_user(username,nick_name,password):
     return  db.users.insert_one({
-             "username":username,
+            "username":username,
             "nick_name":nick_name,
             "password":password
             })
@@ -13,6 +13,11 @@ def add_user(username,nick_name,password):
 
 def find_username(username):
     return db.users.find_one({"username":username})
+
+def find_password(username,password):
+    if username in find_username(username):
+        return db.users.find_one({'password':password})
+
 
 def get_all():
     return list(db.users.find({}))

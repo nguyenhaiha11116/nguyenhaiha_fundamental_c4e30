@@ -1,30 +1,43 @@
-
-$(document).ready(function(){
-
-	//Code to center the subscription pup-up box
-	$box = $('#box');
-	$box.css({
-		'left' : '50%',
-		'top' : '50%',
-		'margin-left' : -$box.width()/2 + 'px',
-		'margin-top' : -$box.height()/2 + 'px'
-	});
-
-
-	//Subscription pup-up
-	$('.start_btn').click(function(){
-		$('#lightbox').width($(window).width()).height($(window).height()).fadeIn(200);
-		$('#box').fadeIn(200);
-
-		return false;
-	});
-
-	$('#lightbox, .close').click(function(){
-		$('#lightbox').width(0).height(0).fadeOut(200);
-		$('#box').fadeOut(200);
-
-		return false;
-	});
-
-
-});
+$('.form').find('input, textarea').on('keyup blur focus', function (e) {
+  
+	var $this = $(this),
+		label = $this.prev('label');
+  
+		if (e.type === 'keyup') {
+			  if ($this.val() === '') {
+			label.removeClass('active highlight');
+		  } else {
+			label.addClass('active highlight');
+		  }
+	  } else if (e.type === 'blur') {
+		  if( $this.val() === '' ) {
+			  label.removeClass('active highlight'); 
+			  } else {
+			  label.removeClass('highlight');   
+			  }   
+	  } else if (e.type === 'focus') {
+		
+		if( $this.val() === '' ) {
+			  label.removeClass('highlight'); 
+			  } 
+		else if( $this.val() !== '' ) {
+			  label.addClass('highlight');
+			  }
+	  }
+  
+  });
+  
+  $('.tab a').on('click', function (e) {
+	
+	e.preventDefault();
+	
+	$(this).parent().addClass('active');
+	$(this).parent().siblings().removeClass('active');
+	
+	target = $(this).attr('href');
+  
+	$('.tab-content > div').not(target).hide();
+	
+	$(target).fadeIn(600);
+	
+  });
